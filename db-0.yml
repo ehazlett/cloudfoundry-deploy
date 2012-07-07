@@ -1,0 +1,20 @@
+---
+deployment:
+  name: "db-0"
+jobs:
+  install:
+    - mysql_node:
+        index: "0"
+    - redis_node:
+        index: "0"
+    - mongodb_node:
+        index: "0"
+    - memcached_node:
+        index: "0"
+    - elasticsearch_node:
+        index: "0"
+  installed:
+    - nats_server:
+        host: "10.1.2.3"
+    - vcap_redis:
+        host: "10.1.2.3"

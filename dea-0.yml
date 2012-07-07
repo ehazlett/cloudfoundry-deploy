@@ -1,0 +1,13 @@
+deployment:
+  name: "dea-0"
+jobs:
+  install:
+    - dea
+  installed:
+    - nats_server:
+        host: "10.1.2.3"
+        port: "4222"
+        user: "nats"
+        password: "nats"
+    - vcap_redis:
+        host: "10.1.2.3"
