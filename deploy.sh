@@ -25,7 +25,7 @@ if [ "$1" = "" ] || [ "$2" = "" ] ; then
     exit 1
 fi
 # edit configs
-sed -i '' "s/NATS_HOST/$2/g" $1.yml
+sed -i '' "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
 
 # check for vcap
 if [ ! -e "~/vcap" ] ; then
