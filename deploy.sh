@@ -29,11 +29,11 @@ if [ "$(grep NATS_HOST $1.yml)" != "" ] ; then
     sed -i '' "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
 fi
 # check for vcap
-if [ ! -e "~/vcap" ] ; then
+if [ ! -e "$HOME/vcap" ] ; then
     git clone https://github.com/cloudfoundry/vcap.git ~/vcap
 fi
 # install
-~/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3
+$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3
 
 if [ "$?" != "0" ]; then
     echo "Error during CloudFoundry installation"
