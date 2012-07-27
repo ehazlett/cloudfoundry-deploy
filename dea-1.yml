@@ -5,9 +5,9 @@ jobs:
     - dea
   installed:
     - nats_server:
-        host: "10.1.2.3"
+        host: "NATS_HOST"
         port: "4222"
         user: "nats"
         password: "nats"
     - vcap_redis:
-        host: "10.1.2.3"
+        host: "NATS_HOST"
