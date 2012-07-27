@@ -25,8 +25,9 @@ if [ "$1" = "" ] || [ "$2" = "" ] ; then
     exit 1
 fi
 # edit configs
-sed -i '' "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
-
+if [ "$(grep NATS_HOST $1.yml)" != "" ] ; then
+    sed -i '' "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
+fi
 # check for vcap
 if [ ! -e "~/vcap" ] ; then
     git clone https://github.com/cloudfoundry/vcap.git ~/vcap
