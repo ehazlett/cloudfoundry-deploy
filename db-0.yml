@@ -15,6 +15,6 @@ jobs:
         index: "0"
   installed:
     - nats_server:
-        host: "1.2.3.4"
+        host: "NATS_HOST"
     - vcap_redis:
-        host: "1.2.3.4"
+        host: "NATS_HOST"
