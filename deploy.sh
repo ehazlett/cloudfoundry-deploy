@@ -4,7 +4,7 @@
 #  (c) arcus.io 2012
 
 # check for root
-if [ "$UID" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
     echo "You must be root to install..."
     exit 1
 fi
@@ -20,7 +20,7 @@ if [ ! -e `which git` ] ; then
     exit 1
 fi
 # check for args
-if [ "$1" == "" ]; then
+if [ "$1" = "" ] || [ "$2" = "" ] ; then
     echo "Usage: $0 <DEPLOY_TYPE> <NATS_HOST> <DOMAIN>\n\nWhere DEPLOY_TYPE is controller-<index>, db-<index>, or dea-<index> (i.e. db-0)\nand NATS_HOST is the NATS MB host and DOMAIN is the custom domain (leave blank for vcap.me)\n"
     exit 1
 fi
