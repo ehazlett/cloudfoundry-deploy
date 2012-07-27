@@ -26,7 +26,7 @@ if [ "$1" = "" ] || [ "$2" = "" ] ; then
 fi
 # edit configs
 if [ "$(grep NATS_HOST $1.yml)" != "" ] ; then
-    sed -i '' "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
+    sed -i "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
 fi
 # check for vcap
 if [ ! -e "$HOME/vcap" ] ; then
