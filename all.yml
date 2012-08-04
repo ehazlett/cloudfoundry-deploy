@@ -1,0 +1,6 @@
+---
+deployment:
+  name: "vcap"
+jobs:
+  install:
+    - all
