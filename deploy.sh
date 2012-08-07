@@ -30,7 +30,8 @@ if [ "$(grep NATS_HOST $1.yml)" != "" ] ; then
 fi
 # check for vcap
 if [ ! -e "$HOME/vcap" ] ; then
-    git clone https://github.com/cloudfoundry/vcap.git ~/vcap
+    git clone https://github.com/ehazlett/vcap.git ~/vcap
+    cd ~/vcap ; git checkout current
 fi
 # install
 $HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3
