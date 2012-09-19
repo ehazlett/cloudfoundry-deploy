@@ -4,6 +4,7 @@ deployment:
 jobs:
   install:
     - nats_server
+    - services_redis
     - cloud_controller:
         builtin_services:
           - redis
