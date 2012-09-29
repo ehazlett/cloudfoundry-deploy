@@ -15,6 +15,7 @@ jobs:
     - router
     - health_manager
     - redis_gateway
+    - uaa
     - ccdb
     - mysql_gateway
     - mongodb_gateway
