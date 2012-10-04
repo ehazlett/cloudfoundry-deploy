@@ -3,6 +3,8 @@
 # Arcus CloudFoundry installation
 #  (c) arcus.io 2012
 
+BRANCH='arcus-stable'
+PROJECT_DIR='`pwd`'
 # check for root
 if [ "$(id -u)" != "0" ]; then
     echo "You must be root to install..."
@@ -21,7 +23,7 @@ if [ ! -e `which git` ] ; then
 fi
 # check for args
 if [ "$1" = "" ] || [ "$2" = "" ] ; then
-    echo "Usage: $0 <DEPLOY_TYPE> <NATS_HOST> <DOMAIN>\n\nWhere DEPLOY_TYPE is controller-<index>, db-<index>, or dea-<index> (i.e. db-0)\nand NATS_HOST is the NATS MB host and DOMAIN is the custom domain (leave blank for vcap.me)\n"
+    echo "Usage: $0 <DEPLOY_TYPE> <NATS_HOST> <DOMAIN>\n\nWhere DEPLOY_TYPE is controller, db, or dea\nand NATS_HOST is the NATS MB host and DOMAIN is the custom domain (leave blank for vcap.me)\n"
     exit 1
 fi
 # edit configs
@@ -30,17 +32,18 @@ if [ "$(grep NATS_HOST $1.yml)" != "" ] ; then
 fi
 # check for vcap
 if [ ! -e "$HOME/vcap" ] ; then
-    git clone https://github.com/cloudfoundry/vcap.git ~/vcap
-    #git clone https://github.com/ehazlett/vcap.git ~/vcap
-    #cd ~/vcap ; git checkout current
+    git clone https://github.com/arcus-io/vcap ~/vcap
+    cd ~/vcap ; git checkout $BRANCH
 fi
 # install
-$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3
+$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $3 -r https://github.com/arcus-io/vcap -b $BRANCH
 
 if [ "$?" != "0" ]; then
     echo "Error during CloudFoundry installation"
     exit 1
 fi
+# copy vcap components
+cp -f $PROJECT_DIR/vcap_configs/$2_vcap_components.json $HOME/cloudfoundry/.deployments/vcap/config/vcap_components.json
 # copy management script
 cp cf_control.sh /usr/local/bin/cf_control
 chmod +x /usr/local/bin/cf_control
