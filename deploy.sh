@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Arcus CloudFoundry installation
 #  (c) arcus.io 2012
