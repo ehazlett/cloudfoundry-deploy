@@ -27,7 +27,8 @@ if [ "$1" = "" ] || [ "$2" = "" ] ; then
     exit 1
 fi
 # edit configs
-if [ "$(grep NATS_HOST $1.yml)" != "" ] ; then
+if [ "$(grep NATS_HOST all.yml)" != "" ] ; then
+    cp all.yml $1.yml
     sed -i "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
 fi
 # check for vcap
@@ -36,14 +37,14 @@ if [ ! -e "$HOME/vcap" ] ; then
     cd ~/vcap ; git checkout $BRANCH
 fi
 # install
-$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $3 -r https://github.com/arcus-io/vcap -b $BRANCH
+$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3 -r https://github.com/arcus-io/vcap -b $BRANCH
 
 if [ "$?" != "0" ]; then
     echo "Error during CloudFoundry installation"
     exit 1
 fi
 # copy vcap components
-cp -f $PROJECT_DIR/vcap_configs/$2_vcap_components.json $HOME/cloudfoundry/.deployments/vcap/config/vcap_components.json
+cp -f $PROJECT_DIR/vcap_configs/$1_vcap_components.json $HOME/cloudfoundry/.deployments/vcap/config/vcap_components.json
 # copy management script
 cp cf_control.sh /usr/local/bin/cf_control
 chmod +x /usr/local/bin/cf_control
