@@ -14,9 +14,15 @@ function log() {
     echo '-------------------------'
     tput sgr0
 }
+function err() {
+    tput bold
+    tput setaf 1
+    echo $*
+    tput sgr0
+}
 # check for root
 if [ "$(id -u)" != "0" ]; then
-    echo "You must be root to install..."
+    err "You must be root to install..."
     exit 1
 fi
 
@@ -24,7 +30,7 @@ log " Arcus CloudFoundry Install"
 
 # check for git
 if [ ! -e `which git` ] ; then
-    echo "You must have git installed.  On ubuntu or debian, you can apt-get install git-core"
+    err "You must have git installed.  On ubuntu or debian, you can apt-get install git-core"
     exit 1
 fi
 # check for args
@@ -48,7 +54,7 @@ log " Installing CloudFoundry..."
 $HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3 -r https://github.com/arcus-io/vcap -b $BRANCH
 
 if [ "$?" != "0" ]; then
-    echo "Error during CloudFoundry installation"
+    err "Error during CloudFoundry installation"
     exit 1
 fi
 # copy vcap components
@@ -58,5 +64,6 @@ cp -f $PROJECT_DIR/vcap_configs/$1_vcap_components.json $HOME/cloudfoundry/.depl
 cp cf_control.sh /usr/local/bin/cf_control
 chmod +x /usr/local/bin/cf_control
 
-log " Arcus CloudFoundry installation complete.
-    You can start your instance by using cf_control <start|stop|restart|tail>"
+log " Arcus CloudFoundry installation complete."
+echo "  You can start your instance by using cf_control <start|stop|restart|tail>"
+echo ""
