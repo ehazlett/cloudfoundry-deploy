@@ -8,7 +8,7 @@ PROJECT_DIR='`pwd`'
 
 function log() {
     tput bold
-    tput setaf 2
+    tput setaf 4
     echo
     echo $*
     echo '-------------------------'
