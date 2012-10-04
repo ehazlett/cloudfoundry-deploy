@@ -5,16 +5,22 @@
 
 BRANCH='arcus-stable'
 PROJECT_DIR='`pwd`'
+
+function log() {
+    tput bold
+    tput setaf 2
+    echo
+    echo $*
+    echo '-------------------------'
+    tput sgr0
+}
 # check for root
 if [ "$(id -u)" != "0" ]; then
     echo "You must be root to install..."
     exit 1
 fi
 
-echo "---------------------------"
-echo " Arcus CloudFoundry Install"
-echo "---------------------------"
-echo ""
+log " Arcus CloudFoundry Install"
 
 # check for git
 if [ ! -e `which git` ] ; then
@@ -33,10 +39,12 @@ if [ "$(grep NATS_HOST all.yml)" != "" ] ; then
 fi
 # check for vcap
 if [ ! -e "$HOME/vcap" ] ; then
+    log " Cloning Arcus VCAP..."
     git clone https://github.com/arcus-io/vcap ~/vcap
     cd ~/vcap ; git checkout $BRANCH
 fi
 # install
+log " Installing CloudFoundry..."
 $HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3 -r https://github.com/arcus-io/vcap -b $BRANCH
 
 if [ "$?" != "0" ]; then
@@ -44,12 +52,11 @@ if [ "$?" != "0" ]; then
     exit 1
 fi
 # copy vcap components
+log " Configuring for $1"
 cp -f $PROJECT_DIR/vcap_configs/$1_vcap_components.json $HOME/cloudfoundry/.deployments/vcap/config/vcap_components.json
 # copy management script
 cp cf_control.sh /usr/local/bin/cf_control
 chmod +x /usr/local/bin/cf_control
 
-echo "---------------------------"
-echo " Arcus CloudFoundry installation complete."
-echo "  You can start your instance by using cf_control <start|stop|restart|tail>"
-echo ""
+log " Arcus CloudFoundry installation complete.
+    You can start your instance by using cf_control <start|stop|restart|tail>"
