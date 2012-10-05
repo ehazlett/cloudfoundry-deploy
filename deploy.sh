@@ -41,11 +41,6 @@ if [ "$1" = "" ] || [ "$2" = "" ] ; then
     (leave blank for vcap.me)"
     exit 1
 fi
-# edit configs
-if [ "$(grep NATS_HOST all.yml)" != "" ] ; then
-    cp all.yml $1.yml
-    sed -i "s/NATS_HOST/$2/g" $1.yml 2>&1 > /dev/null
-fi
 # check for vcap
 if [ ! -e "$HOME/vcap" ] ; then
     log " Cloning Arcus VCAP..."
@@ -54,7 +49,7 @@ if [ ! -e "$HOME/vcap" ] ; then
 fi
 # install
 log " Installing CloudFoundry..."
-$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3 -b $REVISION
+$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $3 -b $REVISION
 
 if [ "$?" != "0" ]; then
     err "Error during CloudFoundry installation"
