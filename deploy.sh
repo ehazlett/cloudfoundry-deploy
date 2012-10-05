@@ -3,7 +3,6 @@
 # Arcus CloudFoundry installation
 #  (c) arcus.io 2012
 
-REVISION='a023a091e'
 PROJECT_DIR='`pwd`'
 
 function log() {
@@ -45,11 +44,10 @@ fi
 if [ ! -e "$HOME/vcap" ] ; then
     log " Cloning Arcus VCAP..."
     git clone https://github.com/cloudfoundry/vcap ~/vcap
-    cd ~/vcap ; git checkout $REVISION
 fi
 # install
 log " Installing CloudFoundry..."
-$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $3 -b $REVISION
+$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $3
 
 if [ "$?" != "0" ]; then
     err "Error during CloudFoundry installation"
