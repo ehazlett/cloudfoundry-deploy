@@ -51,7 +51,7 @@ if [ ! -e "$HOME/vcap" ] ; then
 fi
 # install
 log " Installing CloudFoundry..."
-$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3 -r https://github.com/arcus-io/vcap -b $BRANCH
+$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c $1.yml -D $3 -r https://github.com/arcus-io -b $BRANCH
 
 if [ "$?" != "0" ]; then
     err "Error during CloudFoundry installation"
