@@ -3,7 +3,7 @@
 # Arcus CloudFoundry installation
 #  (c) arcus.io 2012
 
-PROJECT_DIR='`pwd`'
+PROJECT_DIR=`pwd`
 
 function log() {
     tput bold
