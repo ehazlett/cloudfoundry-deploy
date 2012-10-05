@@ -35,7 +35,10 @@ if [ ! -e `which git` ] ; then
 fi
 # check for args
 if [ "$1" = "" ] || [ "$2" = "" ] ; then
-    echo "Usage: $0 <DEPLOY_TYPE> <NATS_HOST> <DOMAIN>\n\nWhere DEPLOY_TYPE is controller, db, or dea\nand NATS_HOST is the NATS MB host and DOMAIN is the custom domain (leave blank for vcap.me)\n"
+    echo "Usage: $0 <DEPLOY_TYPE> <NATS_HOST> <DOMAIN>
+    Where DEPLOY_TYPE is controller, db, or dea and NATS_HOST 
+    is the NATS MB host and DOMAIN is the custom domain 
+    (leave blank for vcap.me)"
     exit 1
 fi
 # edit configs
