@@ -10,4 +10,4 @@ if [ "$1" = "" ] || [ "$2" = "" ] || [ "$3" = "" ] || [ "$4" = "" ]; then
         exit 1
 fi
 
-find ~/cloudfoundry/.deployments -name "*.yml" -exec sed "s/mbus.*/mbus: nats:\/\/$2:$3@$1:$4/g" {} \;
+find ~/cloudfoundry/.deployments -name "*.yml" -exec sed -i "s/mbus.*/mbus: nats:\/\/$2:$3@$1:$4/g" {} \;
