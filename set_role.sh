@@ -6,7 +6,7 @@
 source common.sh
 
 if [ ! -e $HOME/cloudfoundry/.deployments/vcap ]; then echo "You must install CloudFoundry first"; exit 1; fi
-if [ "$1" = ""]; then
+if [ "$1" = "" ]; then
     echo "Usage: $0 <ROLE>"
     echo "  Where <ROLE> is either controller, service, or dea"
     echo ""
