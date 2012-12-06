@@ -5,6 +5,12 @@
 
 source common.sh
 
+# check for root
+if [ "$(id -u)" != "0" ]; then
+    err "You must be root to install..."
+    exit 1
+fi
+
 if [ ! -e $HOME/cloudfoundry/.deployments/vcap ]; then echo "You must install CloudFoundry first"; exit 1; fi
 if [ "$1" = "" ]; then
     echo "Usage: $0 <ROLE>"
