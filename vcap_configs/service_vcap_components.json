@@ -1,1 +1,1 @@
-{"components":["postgresql_node","mysql_node","redis_node","mongodb_worker","rabbitmq_node","redis_worker","memcached_node","mysql_worker","serialization_data_server","mongodb_node","vblob_node","postgresql_worker","elasticsearch_node"]}
+{"components":["postgresql_node","mysql_node","redis_node","mongodb_worker","rabbitmq_node","redis_worker","memcached_node","mysql_worker","mongodb_node","vblob_node","postgresql_worker","elasticsearch_node"]}
