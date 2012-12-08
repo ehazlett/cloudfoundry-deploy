@@ -45,5 +45,5 @@ chmod +x /usr/local/bin/cf_control
 
 log " Arcus CloudFoundry installation complete."
 echo "  Run set_role.sh to activate the instance role (controller, service, dea, etc.)."
-echo "  You can start your instance by using cf_control <start|stop|restart|tail>"
+echo "  You can control this instance by using cf_control <start|stop|restart|tail>"
 echo ""
