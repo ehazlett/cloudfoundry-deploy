@@ -5,7 +5,7 @@
 
 PROJECT_DIR=`pwd`
 REPO_BASE=https://github.com/arcus-io/
-${VCAP_REVISION:=arcus-stable}
+VCAP_REVISION=${VCAP_REVISION:=arcus-stable}
 
 function log() {
     tput bold
