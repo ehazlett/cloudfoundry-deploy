@@ -32,8 +32,7 @@ if [ ! -e "$HOME/vcap" ] ; then
     git clone $REPO_BASE/vcap ~/vcap
 fi
 # install
-log " Installing CloudFoundry..."
-log " Using revision: $VCAP_REVISION"
+log " Installing CloudFoundry (revision: $VCAP_REVISION)..."
 $HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $1 -r $REPO_BASE -b $VCAP_REVISION
 
 if [ "$?" != "0" ]; then
