@@ -29,7 +29,7 @@ fi
 # check for vcap
 if [ ! -e "$HOME/vcap" ] ; then
     log " Cloning VCAP..."
-    git clone $REPO_BASE ~/vcap
+    git clone $REPO_BASE/vcap ~/vcap
 fi
 # install
 log " Installing CloudFoundry..."
