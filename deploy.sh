@@ -29,11 +29,11 @@ fi
 # check for vcap
 if [ ! -e "$HOME/vcap" ] ; then
     log " Cloning VCAP..."
-    git clone https://github.com/cloudfoundry/vcap ~/vcap
+    git clone $REPO_BASE ~/vcap
 fi
 # install
 log " Installing CloudFoundry..."
-$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $1
+$HOME/vcap/dev_setup/bin/vcap_dev_setup -a -c all.yml -D $1 -r $REPO_BASE -b $VCAP_REVISION
 
 if [ "$?" != "0" ]; then
     err "Error during CloudFoundry installation"
