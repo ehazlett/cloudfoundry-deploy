@@ -26,11 +26,6 @@ if [ "$1" = "-h" ]; then
     (leave blank for vcap.me)"
     exit 0
 fi
-# check for vcap
-if [ ! -e "$HOME/vcap" ] ; then
-    log " Cloning VCAP..."
-    git clone $REPO_BASE/vcap ~/vcap
-fi
 # install
 log " Installing CloudFoundry (revision: $VCAP_REVISION)..."
 wget https://raw.github.com/cloudfoundry/vcap/master/dev_setup/bin/vcap_dev_setup -q -O $HOME/.vcap_dev_setup
