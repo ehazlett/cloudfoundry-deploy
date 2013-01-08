@@ -28,6 +28,7 @@ if [ "$1" = "-h" ]; then
 fi
 # install
 log " Installing CloudFoundry (revision: $VCAP_REVISION)..."
+if [ -e $HOME/.vcap_dev_setup ] ; then rm $HOME/.vcap_dev_setup ; fi
 wget https://raw.github.com/cloudfoundry/vcap/master/dev_setup/bin/vcap_dev_setup -q -O $HOME/.vcap_dev_setup
 chmod +x $HOME/.vcap_dev_setup
 $HOME/.vcap_dev_setup -a -c all.yml -D $1 -r $REPO_BASE -b $VCAP_REVISION
