@@ -4,7 +4,7 @@
 #  (c) arcus.io 2012
 
 PROJECT_DIR=`pwd`
-REPO_BASE=${VCAP_REPO_BASE:=git://github.com/arcus-io}
+REPO_BASE=${VCAP_REPO_BASE:=git://bitbucket.org/arcus-io}
 VCAP_REVISION=${VCAP_REVISION:=arcus-stable}
 
 function log() {

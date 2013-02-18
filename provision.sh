@@ -7,7 +7,7 @@ fi
 VCAP_USER=vagrant
 DOMAIN=${VCAP_DOMAIN:=cf.int}
 #export VCAP_REPO_BASE=https://github.com/arcus-io
-export VCAP_REPO_BASE=git://github.com/arcus-io
+export VCAP_REPO_BASE=git://bitbucket.org/arcus-io
 
 # common config
 if [ -e "/etc/.configured" ] ; then
